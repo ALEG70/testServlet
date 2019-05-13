@@ -7,7 +7,7 @@
 
     <servlet>
         <servlet-name>fineServlet</servlet-name>
-        <servlet-class>oleg.larionov.FineServlet</servlet-class>
+        <servlet-class>oleg.larionov.IndexServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>

@@ -1,12 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-    <ul class="hr">
-        <li>Авто</li>
+    <ul class="hr" >
+        <li><a href="/auto">Авто</a></li>
         <li>|</li>
-        <li>Штрафы</li>
+        <li><a href="/owners">Владельцы</a></li>
         <li>|</li>
-        <li>Хозяева</li>
+        <li><a href="/fines">Штрафы</a></li>
         <li>|</li>
-        <li>Типы штрафов</li>
+        <li><a href="/fine_types">Типы штрафов</a></li>
     </ul>
 </html>

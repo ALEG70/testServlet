@@ -1,0 +1,12 @@
+.main{
+    height: 30px;
+    overflow: false;
+    padding-left: 15px;
+    background: #c0c0c0;
+}
+
+ul.hr li {
+    display: inline;
+    margin-right: 5px;
+    padding: 3px;
+}
