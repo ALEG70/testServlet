@@ -21,30 +21,31 @@
           </style>
     </head>
     <body>
-        <div class="main">
-            <h2>Штрафы</h2>
+         <div class="main">
+            <h2>Машины</h2>
         </div>
-
+        </br>
         <div>
             <jsp:include page="_menu.jsp" />
         </div>
-
-<table border="1">
+</br>
+        <table border="1">
             <tr>
                 <th>ИД</th>
-                <th>ИД Авто</th>
-                <th>ИД Типа</th>
+                <th>Производитель</th>
+                <th>Модель</th>
+                <th>Номер</th>
+                <th>ИД Владельца</th>
             </tr>
-            <c:forEach items="${finesList}" var="fine">
               <tr>
-                <td>${fine.id_fine}</td>
-                <td>${fine.id_car}</td>
-                <td>${fine.id_type}</td>
+                <td>${car.id}</td>
+                <td>${car.maker}</td>
+                <td>${car.model}</td>
+                <td>${car.license_plate}</td>
+                <td>${car.id_owner}</td>
               </tr>
-            </c:forEach>
-            </table>
-            </br>
-
+        </table>
+</br>
         <jsp:include page="_footer.jsp" />
     </body>
 </html>

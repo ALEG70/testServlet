@@ -1,4 +1,4 @@
-package oleg.larionov.dao;
+package oleg.larionov.utils;
 
 public class DataSource {
 
@@ -24,4 +24,5 @@ public class DataSource {
     public String getDataSource(){
         return driver+path;
     }
+
 }
