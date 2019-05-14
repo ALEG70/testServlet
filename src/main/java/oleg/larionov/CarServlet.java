@@ -15,22 +15,23 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet("/cars")
-public class CarsServlet extends HttpServlet {
+@WebServlet("/car")
+public class CarServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        Car car = null;
+        String id = req.getParameter("id_car");
+        car = new JdbcCarDao().findById(Integer.valueOf(id));
 
-            List<Car> list = null;
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/views/car.jsp");
 
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/views/cars.jsp");
+        req.setAttribute("car", car);
+        requestDispatcher.forward(req, resp);
+        //resp.getWriter().println();
 
-            list = new JdbcCarDao().findAll();
-
-
-            req.setAttribute("carsList", list);
-            requestDispatcher.forward(req, resp);
-        }
+    }
 
 }
+

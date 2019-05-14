@@ -28,7 +28,7 @@
         <div>
             <jsp:include page="_menu.jsp" />
         </div>
-
+</br>
         <table border="1">
             <tr>
                 <th>ИД</th>
@@ -37,17 +37,15 @@
                 <th>Номер</th>
                 <th>ИД Владельца</th>
             </tr>
-            <c:forEach items="${carsList}" var="cars">
               <tr>
-                <td><a href=/car?id_car=${cars.id}>${cars.id}</a></td>
-                <td>${cars.maker}</td>
-                <td>${cars.model}</td>
-                <td>${cars.license_plate}</td>
-                <td>${cars.id_owner}</td>
+                <td>${car.id}</td>
+                <td>${car.maker}</td>
+                <td>${car.model}</td>
+                <td>${car.license_plate}</td>
+                <td>${car.id_owner}</td>
               </tr>
-            </c:forEach>
         </table>
-
+</br>
         <jsp:include page="_footer.jsp" />
     </body>
 </html>

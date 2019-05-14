@@ -1,17 +1,20 @@
 package oleg.larionov.dao;
 
 import oleg.larionov.model.Car;
+import oleg.larionov.utils.CarMapper;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class JdbcCarDao implements CarDao {
 
+    JdbcDaoTemplate jdbcDaoTemplate = new JdbcDaoTemplate();
+
     @Override
     public Car findById(Integer id_car){
         String SQL = "SELECT * FROM cars JOIN owners ON cars.owner_id = owners.id_owner AND cars.id_car=?";
-        //Connection connection = DriverManager.getConnection("jdbc:h2:./db/FinesBase");
 
-        return null;
+        return jdbcDaoTemplate.queryForObject(SQL, id_car, new CarMapper());
     }
 
     @Override
@@ -30,7 +33,7 @@ public class JdbcCarDao implements CarDao {
     @Override
     public List<Car> findAll() {
         final String SQL = "SELECT * FROM cars join owners on cars.owner_id = owners.id_owner ORDER BY cars.id_car";
-        return null;
+        return jdbcDaoTemplate.query(SQL, new CarMapper());
     }
 
 }

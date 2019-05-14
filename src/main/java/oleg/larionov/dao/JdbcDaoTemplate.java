@@ -9,21 +9,33 @@ import java.util.List;
 
 public class JdbcDaoTemplate {
 
-    /**
-     * 1. Конфигурируем источник данных
-     * 2. Получаем Statement
-     * 3. Выполняем запрос
-     * 4. Парсим результат
-     * 5. Возвращаем ArrayList
-     * @param sql
-     * @return
-     * @throws SQLException
-     */
-    public <T> List<T> query(String sql, IRowMapper<T> rowMapper) throws SQLException{
+    public JdbcDaoTemplate() {
+        this.dataSource.setDriver("jdbc:h2:");
+        this.dataSource.setPath("./db/FinesBase");
+    }
+
+    public <T> T queryForObject(String sql, Integer id, IRowMapper<T> rowMapper){
         ResultSet resultSet; //
         List<T> list = new ArrayList<T>();
 
-        dataSource.setDataSource("jdbc:h2:","./db/FinesBase");
+        try( Connection connection = DriverManager.getConnection(dataSource.getDataSource())){
+            PreparedStatement statement = connection.prepareStatement(sql);// Statement();
+            statement.setInt(1, id);
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()){
+                list.add(rowMapper.mapRow(resultSet));
+            }
+            }catch(Exception ex){
+                ex.printStackTrace();
+            }
+        return list.get(0);
+    }
+
+    public <T> List<T> query(String sql, IRowMapper<T> rowMapper){
+        ResultSet resultSet; //
+        List<T> list = new ArrayList<T>();
+
         try( Connection connection = DriverManager.getConnection(dataSource.getDataSource())){
             Statement statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
@@ -31,8 +43,15 @@ public class JdbcDaoTemplate {
             while (resultSet.next()){
                 list.add(rowMapper.mapRow(resultSet));
             }
+        }catch(Exception ex){
+            ex.printStackTrace();
         }
         return list;
+    }
+
+    public void setDataSource(String driver, String path) {
+        this.dataSource.setDriver("jdbc:h2:");
+        this.dataSource.setPath("./db/FinesBase");
     }
 
     private DataSource dataSource = new DataSource();
