@@ -68,6 +68,15 @@ public class Fine {
         this.ctr = ctr;
     }
 
+    @Override
+    public String toString() {
+        return "Fine{" +
+                "id_fine=" + id_fine +
+                ", id_car=" + id_car +
+                ", id_type=" + id_type +
+                '}';
+    }
+
     private int id_fine;
     private int id_car;
     private int id_type;

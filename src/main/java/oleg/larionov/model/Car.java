@@ -45,14 +45,6 @@ public class Car {
         this.id_owner = id_owner;
     }
 
-    public Owner getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Owner owner) {
-        this.owner = owner;
-    }
-
     @Override
     public String toString() {
         return "Car{" +
@@ -69,5 +61,4 @@ public class Car {
     private String model;
     private String license_plate;
     private int id_owner;
-    private Owner owner;
 }

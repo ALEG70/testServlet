@@ -1,29 +1,39 @@
 package oleg.larionov.dao;
 
+import oleg.larionov.utils.DataSource;
+import oleg.larionov.utils.IRowMapper;
+
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class JdbcDaoTemplate {
 
-    public List<? extends Object> run() throws SQLException{
-        setDataSource("jdbc:h2:","./db/FinesBase");
+    /**
+     * 1. Конфигурируем источник данных
+     * 2. Получаем Statement
+     * 3. Выполняем запрос
+     * 4. Парсим результат
+     * 5. Возвращаем ArrayList
+     * @param sql
+     * @return
+     * @throws SQLException
+     */
+    public <T> List<T> query(String sql, IRowMapper<T> rowMapper) throws SQLException{
+        ResultSet resultSet; //
+        List<T> list = new ArrayList<T>();
+
+        dataSource.setDataSource("jdbc:h2:","./db/FinesBase");
         try( Connection connection = DriverManager.getConnection(dataSource.getDataSource())){
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(SQL);
-            //Parse result
+            resultSet = statement.executeQuery(sql);
+
+            while (resultSet.next()){
+                list.add(rowMapper.mapRow(resultSet));
+            }
         }
-        return null;
+        return list;
     }
 
-    public void setDataSource(String driver, String path){
-        this.dataSource.setDriver(driver);
-        this.dataSource.setPath(path);
-    }
-
-    public void setSQL(String SQL) {
-        this.SQL = SQL;
-    }
-
-    private String SQL;
-    private DataSource dataSource;
+    private DataSource dataSource = new DataSource();
 }

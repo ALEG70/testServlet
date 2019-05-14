@@ -2,8 +2,6 @@ package oleg.larionov.dao;
 
 import oleg.larionov.model.Car;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.util.List;
 
 public class JdbcCarDao implements CarDao {
@@ -12,8 +10,6 @@ public class JdbcCarDao implements CarDao {
     public Car findById(Integer id_car){
         String SQL = "SELECT * FROM cars JOIN owners ON cars.owner_id = owners.id_owner AND cars.id_car=?";
         //Connection connection = DriverManager.getConnection("jdbc:h2:./db/FinesBase");
-
-
 
         return null;
     }

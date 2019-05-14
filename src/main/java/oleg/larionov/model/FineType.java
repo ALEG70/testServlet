@@ -3,11 +3,6 @@ package oleg.larionov.model;
 
 public class FineType {
 
-    private  int id;
-    private String fine_title;
-    private int fine_fee;
-    private int counter;
-
     public FineType() {
     }
 
@@ -57,4 +52,9 @@ public class FineType {
                 ", fine_fee=" + fine_fee +
                 '}';
     }
+
+    private  int id;
+    private String fine_title;
+    private int fine_fee;
+    private int counter;
 }
