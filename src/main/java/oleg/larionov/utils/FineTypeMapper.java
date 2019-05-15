@@ -5,7 +5,7 @@ import oleg.larionov.model.FineType;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class FineTypeMapper implements IRowMapper<FineType> {
+public class FineTypeMapper implements RowMapper<FineType> {
 
     @Override
     public FineType mapRow(ResultSet resultSet) throws SQLException {

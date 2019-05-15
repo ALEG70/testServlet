@@ -35,7 +35,8 @@
                 <th>Производитель</th>
                 <th>Модель</th>
                 <th>Номер</th>
-                <th>ИД Владельца</th>
+                <th>Имя Владельца</th>
+                <th>Фамилия Владельца</tr>
             </tr>
             <c:forEach items="${carsList}" var="cars">
               <tr>
@@ -43,7 +44,8 @@
                 <td>${cars.maker}</td>
                 <td>${cars.model}</td>
                 <td>${cars.license_plate}</td>
-                <td>${cars.id_owner}</td>
+                <td>${cars.owner.name}</td>
+                <td>${cars.owner.sec_name}</td>
               </tr>
             </c:forEach>
         </table>

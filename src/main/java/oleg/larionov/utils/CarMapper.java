@@ -5,7 +5,7 @@ import oleg.larionov.model.Car;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CarMapper implements IRowMapper<Car> {
+public class CarMapper implements RowMapper<Car> {
 
     @Override
     public Car mapRow(ResultSet resultSet) throws SQLException {
@@ -15,6 +15,7 @@ public class CarMapper implements IRowMapper<Car> {
         car.setModel(resultSet.getString("model"));
         car.setLicense_plate(resultSet.getString("license_plate"));
         car.setId_owner(resultSet.getInt("owner_id"));
+        car.setOwner(new OwnerMapper().mapRow(resultSet));
         return car;
     }
 }

@@ -1,6 +1,6 @@
 package oleg.larionov;
 
-import oleg.larionov.dao.JdbcDaoTemplate;
+import oleg.larionov.dao.JdbcTemplate;
 import oleg.larionov.model.Owner;
 import oleg.larionov.utils.OwnerMapper;
 
@@ -18,7 +18,7 @@ public class OwnersServlet extends HttpServlet {
 
     String SQL = "SELECT * FROM owners";
     List<Owner> list = null;
-    JdbcDaoTemplate jdbcDaoTemplate = new JdbcDaoTemplate();
+    JdbcTemplate jdbcDaoTemplate = new JdbcTemplate();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

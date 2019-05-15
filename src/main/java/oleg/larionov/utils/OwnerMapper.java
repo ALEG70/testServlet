@@ -1,12 +1,11 @@
 package oleg.larionov.utils;
 
-import oleg.larionov.model.FineType;
 import oleg.larionov.model.Owner;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class OwnerMapper implements IRowMapper<Owner> {
+public class OwnerMapper implements RowMapper<Owner> {
 
     @Override
     public Owner mapRow(ResultSet resultSet) throws SQLException {

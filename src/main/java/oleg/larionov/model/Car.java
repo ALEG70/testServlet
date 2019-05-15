@@ -53,6 +53,7 @@ public class Car {
                 ", model='" + model + '\'' +
                 ", license_plate='" + license_plate + '\'' +
                 ", id_owner=" + id_owner +
+                ", owner=" + owner +
                 '}';
     }
 
@@ -61,4 +62,13 @@ public class Car {
     private String model;
     private String license_plate;
     private int id_owner;
+    private Owner owner;
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
 }

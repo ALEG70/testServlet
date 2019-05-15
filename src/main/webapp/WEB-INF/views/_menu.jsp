@@ -2,7 +2,7 @@
 <html>
     <ul class="hr" >
 
-        <li><a href="/findByParameters">Типы штрафов</a></li>
+        <li><a href="/findByParameters">Найти штраф</a></li>
         <li>|</li>
         <li><a href="/cars">Авто</a></li>
         <li>|</li>

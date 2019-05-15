@@ -13,7 +13,7 @@
         <jsp:include page="_menu.jsp" />
     </div>
 <div>
-<form action="../fines" method="GET">
+<form action="../byParameters" method="GET">
     <table>
         <tr>
             <td>

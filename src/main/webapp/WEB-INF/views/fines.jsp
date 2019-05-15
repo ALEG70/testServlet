@@ -32,14 +32,25 @@
 <table border="1">
             <tr>
                 <th>ИД</th>
-                <th>ИД Авто</th>
-                <th>ИД Типа</th>
+                <th>Марка</th>
+                <th>Модель</th>
+                <th>Номер</th>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Наименование</th>
+                <th>Сумма</th>
             </tr>
             <c:forEach items="${finesList}" var="fine">
               <tr>
                 <td>${fine.id_fine}</td>
-                <td>${fine.id_car}</td>
-                <td>${fine.id_type}</td>
+                <td>${fine.car.maker}</td>
+                <td>${fine.car.model}</td>
+                <td>${fine.car.license_plate}</td>
+                <td>${fine.car.owner.name}</td>
+                <td>${fine.car.owner.sec_name}</td>
+                <td>${fine.type.fine_title}</td>
+                <td>${fine.type.fine_fee}</td>
+
               </tr>
             </c:forEach>
             </table>
