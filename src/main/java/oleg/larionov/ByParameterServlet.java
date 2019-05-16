@@ -19,17 +19,18 @@ public class ByParameterServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        //1.Достаем параметры
         Object[] parameters = {
                 req.getParameter("sec_name") == null ? "%" : parameterHelper(req.getParameter("sec_name"))+"%",
                 req.getParameter("license_plate") == null ? "%" : parameterHelper(req.getParameter("license_plate"))+"%",
         };
-
-        System.out.println("Параметры в Сервлете: " + parameters[0]);
+        //2.Выполняем запрос к БД
         List<Fine> list = new JdbcFineDao().findWithParameters(parameters);
-
+        //3.Создаем диспетчер запроса, устанавливаем вид
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/views/fines.jsp");
+        //4.Устанавливаем атрибут для отображения
         req.setAttribute("finesList", list);
+        //5.Отправляем сформированный ответ контейнеру
         requestDispatcher.forward(req, resp);
         //resp.getWriter().println(list.get(0));
     }

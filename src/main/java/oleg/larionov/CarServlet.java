@@ -17,9 +17,8 @@ public class CarServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        Car car = null;
         String id = req.getParameter("id_car");
-        car = new JdbcCarDao().findById(Integer.valueOf(id));
+        Car car = new JdbcCarDao().findById(Integer.valueOf(id));
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/views/car.jsp");
 

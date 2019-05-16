@@ -1,5 +1,6 @@
 package oleg.larionov;
 
+import oleg.larionov.dao.JdbcOwnerDao;
 import oleg.larionov.dao.JdbcTemplate;
 import oleg.larionov.model.Owner;
 import oleg.larionov.utils.OwnerMapper;
@@ -16,17 +17,13 @@ import java.util.List;
 @WebServlet("/owners")
 public class OwnersServlet extends HttpServlet {
 
-    String SQL = "SELECT * FROM owners";
-    List<Owner> list = null;
-    JdbcTemplate jdbcDaoTemplate = new JdbcTemplate();
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/views/owners.jsp");
-        try{
-           list = jdbcDaoTemplate.query(SQL, new OwnerMapper());
-        }catch(Exception ex){ ex.printStackTrace();}
+
+        List<Owner> list = new JdbcOwnerDao().findAll();
+
         req.setAttribute("ownersList", list);
         requestDispatcher.forward(req, resp);
     }

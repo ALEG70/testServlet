@@ -18,9 +18,8 @@ public class CarsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-            List<Car> list = null;
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/views/cars.jsp");
-            list = new JdbcCarDao().findAll();
+            List<Car> list = new JdbcCarDao().findAll();
             req.setAttribute("carsList", list);
             requestDispatcher.forward(req, resp);
             //resp.getWriter().println(list.get(0));

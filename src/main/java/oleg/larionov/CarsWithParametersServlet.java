@@ -18,8 +18,6 @@ public class CarsWithParametersServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        Car car = null;
-
         Object [] parameters = {
             req.getParameter("license_plate") == null ? "%" : req.getParameter("licence_plate"),
             req.getParameter("sec_name") == null ? "%" : req.getParameter("sec_name"),
