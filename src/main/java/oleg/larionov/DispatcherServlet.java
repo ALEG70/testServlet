@@ -1,19 +1,11 @@
 package oleg.larionov;
 
-import oleg.larionov.dao.JdbcDao;
-import oleg.larionov.dao.JdbcTemplate;
-import oleg.larionov.utils.CarMapper;
-import oleg.larionov.utils.RowMapper;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
 
 @WebServlet("/")
 public class DispatcherServlet extends HttpServlet {
@@ -21,12 +13,22 @@ public class DispatcherServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        setPrefix("/WEB-INF/views/");
-        setSuffix(".jsp");
+    FrontController controller = getController(req);
+        controller.init(getServletContext(), resp, req);
+    controller.process();
 
+    }
 
-    //showQueryParams(req, resp);
-
+    private FrontController getController(HttpServletRequest request){
+        try{
+            System.out.println(String.format("oleg.larionov.%s", request.getRequestURI().substring(1)+"Controller"));
+            Class type = Class.forName(
+                    String.format("oleg.larionov.%s", request.getRequestURI().substring(1)+"Controller"));
+            return (FrontController) type.asSubclass(FrontController.class).newInstance();
+        } catch(Exception ex){
+            ex.printStackTrace();
+            return null;
+        }
     }
 
     private String prefix;
